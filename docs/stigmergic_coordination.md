@@ -40,3 +40,31 @@ Maximum pheromone value: 69
 ## Disclosure Note
 
 This page provides high-level public evidence only. Full implementation details, complete source code, parameters, and manuscript-level derivations remain private while the work is being prepared for academic submission.
+
+## Final Runtime Evidence
+
+A stable runtime demonstration was completed with three UAVs and one Husky UGV in Gazebo/PX4/ROS 2.
+
+Verified runtime behavior:
+
+- Three UAVs armed successfully.
+- Three UAVs achieved stable airborne flight.
+- UAV altitude targets were approximately:
+  - Drone 0: -3 m
+  - Drone 1: -5 m
+  - Drone 2: -7 m
+- UAVs performed visible x-y patrol motion.
+- `/pheromone_deposit` published valid in-map coordinates.
+- `/pheromone_map` published at approximately 10 Hz.
+- The pheromone grid contained active non-zero cells.
+- HuskyForager was running during the demonstration.
+
+Representative verified outputs:
+
+```text
+/pheromone_map average rate: 10.000 Hz
+
+Non-zero cells: 108
+Min non-zero: 1
+Max: 58
+
