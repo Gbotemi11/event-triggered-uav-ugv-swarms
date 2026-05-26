@@ -161,3 +161,11 @@ Email: oluwagbotemi6ogundipe@gmail.com
 A high-level run guide is available here:
 
 [Running the UAV-UGV Swarm Simulation](docs/run_simulation.md)
+
+---
+
+## Stigmergic Coordination Evidence
+
+Runtime evidence for the pheromone-based coordination loop is available here:
+
+[Stigmergic Coordination and Pheromone Evidence](docs/stigmergic_coordination.md)
