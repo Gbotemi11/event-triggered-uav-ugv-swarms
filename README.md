@@ -153,3 +153,11 @@ A public preprint or submitted manuscript link will be added when available.
 **Oluwagbotemi Elijah Ogundipe**  
 B.Eng. Mechatronics Engineering  
 Email: oluwagbotemi6ogundipe@gmail.com
+
+---
+
+## Running the Simulation
+
+A high-level run guide is available here:
+
+[Running the UAV-UGV Swarm Simulation](docs/run_simulation.md)
