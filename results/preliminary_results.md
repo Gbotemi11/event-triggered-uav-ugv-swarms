@@ -75,3 +75,18 @@ Evaluate whether the coordination approach remains useful when one or more UAVs 
 The preliminary simulation results suggest that event-triggered stigmergic coordination can reduce communication load compared with continuous broadcasting while still providing useful guidance for UGV navigation.
 
 Detailed numerical results will be added after manuscript submission or public preprint release.
+---
+
+## Confirmed Sample Run
+
+A recent simulation run produced the following observed values:
+
+| Metric | Value |
+|---|---:|
+| Task completion time | 10.80 seconds |
+| Peak pheromone concentration | 83.0 |
+| Distance travelled from spawn | 4.57 m |
+
+This sample run confirms that the UGV received the shared guidance information and published movement commands through `/husky_0/cmd_vel`.
+
+
