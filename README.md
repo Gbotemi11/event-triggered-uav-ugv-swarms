@@ -46,6 +46,15 @@ A high-level architecture diagram is available here:
 
 ---
 
+
+## Simulation Screenshot
+
+The current Gazebo simulation setup includes three UAV agents and one Husky UGV.
+
+![Gazebo UAV-UGV setup](assets/gazebo_uav_ugv_setup.png)
+
+---
+
 ## Current Simulation Setup
 
 The current simulation study uses:
