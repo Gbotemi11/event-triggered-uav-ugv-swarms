@@ -38,6 +38,14 @@ This approach aims to support:
 
 ---
 
+## System Architecture
+
+A high-level architecture diagram is available here:
+
+[System Architecture](docs/system_architecture.md)
+
+---
+
 ## Current Simulation Setup
 
 The current simulation study uses:
