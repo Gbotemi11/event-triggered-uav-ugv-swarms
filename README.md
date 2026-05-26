@@ -1,60 +1,122 @@
 # Event-Triggered Stigmergic Coordination for Heterogeneous UAV–UGV Swarms
 
-This repository presents a non-confidential research overview of an early-stage swarm robotics project focused on communication-efficient coordination for heterogeneous UAV–UGV teams.
+**Author:** Oluwagbotemi Elijah Ogundipe  
+**Status:** Early-stage research manuscript in preparation  
+**Focus:** Swarm robotics, UAV–UGV coordination, event-triggered communication, communication-efficient multi-robot autonomy
 
-The work explores how UAVs can support UGV navigation through indirect digital environmental signalling rather than continuous state broadcasting. The goal is to reduce communication load while preserving useful coordination, scalability, robustness, and safety-aware navigation.
+---
 
-## Research Direction
+## Overview
 
-The project investigates communication-efficient swarm robotics for heterogeneous robot teams operating under limited communication. It combines ideas from:
+This repository presents a public, non-confidential overview of an early-stage swarm robotics research project on communication-efficient coordination for heterogeneous UAV–UGV teams.
 
-- swarm robotics
-- stigmergic coordination
-- event-triggered communication
-- UAV–UGV cooperation
-- safety-aware multi-agent autonomy
-- ROS 2, PX4, and Gazebo simulation
+The project investigates how aerial robots can support ground robot navigation through indirect digital environmental signalling instead of continuous state broadcasting.
 
-## Current Status
+The work is currently implemented in simulation using ROS 2 Jazzy, PX4, and Gazebo.
 
-The system has been implemented in simulation using ROS 2 Jazzy, PX4, and Gazebo with a heterogeneous UAV–UGV setup.
+---
 
-Current experiments include:
+## Research Motivation
 
-- communication reduction compared with continuous broadcasting
-- UAV–UGV guidance through an indirect shared guidance layer
-- scalability testing with larger agent teams
-- robustness evaluation under agent failure
+Large robot teams often depend on frequent communication between agents. This can become unreliable or expensive in communication-constrained, uncertain, or dynamic environments.
+
+This project explores an alternative approach inspired by stigmergy, where agents coordinate indirectly through traces left in the environment.
+
+---
+
+## Core Research Idea
+
+Instead of continuous communication, UAVs communicate only when relevant events occur. The UGV does not receive direct commands from the UAVs. Instead, it follows information encoded in a shared guidance field.
+
+This approach aims to support:
+
+- reduced communication load
+- decentralized UAV–UGV coordination
+- scalable swarm behavior
+- robustness under agent failure
+- safety-aware multi-agent operation
+
+---
+
+## Current Simulation Setup
+
+The current simulation study uses:
+
+- ROS 2 Jazzy
+- PX4
+- Gazebo
+- multiple UAV agents
+- one Clearpath Husky UGV
+- shared digital guidance layer
+- event-triggered updates
 - safety-aware coordination using control barrier function concepts
 
-The full manuscript is currently in preparation and has not yet been publicly released.
+---
+
+## Preliminary Experimental Results
+
+The current simulation study includes four controlled experiments:
+
+| Experiment | Purpose |
+|---|---|
+| Communication reduction | Compare event-triggered communication against continuous broadcasting |
+| Task completion | Evaluate UGV guidance compared with unguided behavior |
+| Scalability | Test behavior with larger agent teams |
+| Robustness | Evaluate swarm behavior under UAV failure |
+
+Preliminary results suggest that event-triggered stigmergic coordination can substantially reduce communication compared with continuous broadcasting while still providing useful guidance for the ground robot.
+
+The full manuscript contains detailed quantitative results and is currently in preparation.
+
+---
 
 ## Related UGV Platform Work
 
-In parallel, I am building an edge-device-based custom UGV platform for visual-inertial sensing and future autonomous navigation research. The current platform uses two CSI cameras and an IMU connected through a USB serial bridge, running on ROS 2 Jazzy.
+In parallel, I am building an edge-device-based custom UGV platform for visual-inertial sensing and future autonomous navigation research.
 
-Current progress includes:
+The current platform includes:
 
-- calibrated IMU publishing to `/imu/data`
+- two CSI cameras
+- IMU connected through a USB serial bridge
+- ROS 2 Jazzy sensor integration
+- calibrated IMU publishing to /imu/data
 - dual-camera ROS topic publishing
 - synchronized ROS bag recording
-- repeatable health-check, logging, calibration, and startup scripts
-- preparation for visual and visual-inertial SLAM evaluation
+- health-check, logging, calibration, and startup scripts
+
+This hardware work supports the longer-term goal of moving from simulation-only UAV–UGV coordination toward real-world robot deployment.
+
+---
 
 ## Planned Extensions
 
-Future work includes:
+Planned next steps include:
 
-- stronger theoretical analysis of event-triggered swarm coordination
-- additional baseline comparisons
-- simulation video release
-- hardware-oriented validation
-- semantic and dynamic SLAM for UGV navigation
-- preparation for conference submission
+- improving theoretical analysis of the event-triggered coordination mechanism
+- comparing against additional decentralized coordination baselines
+- preparing a conference submission
+- creating simulation videos and visual result summaries
+- extending toward hardware-oriented validation
+- exploring semantic and dynamic SLAM for UGV navigation in changing environments
 
-## Note
+---
 
-This repository is a public research overview. Full implementation details, code, and manuscript are currently private while the work is being prepared for academic submission.
+## Repository Contents
+
+assets/    Images, diagrams, screenshots, and architecture figures  
+docs/      Public research summaries and non-confidential documents  
+results/   Result tables, plots, and experiment summaries  
+videos/    Simulation videos or demo links  
+
+---
+
+## Current Disclosure Status
+
+This repository is a public research overview. Full implementation details, source code, and the complete manuscript are currently private while the work is being prepared for academic submission.
+
+A public preprint or submitted manuscript link will be added when available.
+
+---
 
 ## Contact
 
