@@ -75,6 +75,10 @@ The current simulation study includes four controlled experiments:
 Preliminary results suggest that event-triggered stigmergic coordination can substantially reduce communication compared with continuous broadcasting while still providing useful guidance for the ground robot.
 
 The full manuscript contains detailed quantitative results and is currently in preparation.
+A non-confidential preliminary results summary is available here:
+
+[Preliminary Simulation Results](results/preliminary_results.md)
+
 
 ---
 
