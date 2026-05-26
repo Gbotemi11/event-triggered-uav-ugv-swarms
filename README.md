@@ -47,6 +47,15 @@ A high-level architecture diagram is available here:
 ---
 
 
+
+## Simulation Demo Video
+
+A short simulation demo video is available here:
+
+[UAV-UGV Coordination Demo](videos/uav_ugv_coordination_demo.mp4)
+
+---
+
 ## Simulation Screenshot
 
 The current Gazebo simulation setup includes three UAV agents and one Husky UGV.
