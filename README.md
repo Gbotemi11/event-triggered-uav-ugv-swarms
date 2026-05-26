@@ -169,3 +169,14 @@ A high-level run guide is available here:
 Runtime evidence for the pheromone-based coordination loop is available here:
 
 [Stigmergic Coordination and Pheromone Evidence](docs/stigmergic_coordination.md)
+
+
+## Final Runtime Demonstration
+
+The latest simulation evidence includes a stable three-UAV and Husky UGV stigmergic coordination run:
+
+- [Three-UAV Husky stigmergy demo](videos/three_uav_husky_stigmergy_demo.mp4)
+- [Pheromone runtime evidence](videos/pheromone_runtime_evidence.mp4)
+
+The run demonstrates three airborne UAVs performing patrol motion, live pheromone deposition, a 10 Hz pheromone map, and Husky UGV foraging behavior driven by the pheromone field.
+
