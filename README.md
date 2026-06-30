@@ -1,182 +1,252 @@
-# Event-Triggered Stigmergic Coordination for Heterogeneous UAV–UGV Swarms
+# Event-Triggered Distributed Spatial Memory for Heterogeneous UAV–UGV Teams
 
-**Author:** Oluwagbotemi Elijah Ogundipe  
-**Status:** Early-stage research manuscript in preparation  
-**Focus:** Swarm robotics, UAV–UGV coordination, event-triggered communication, communication-efficient multi-robot autonomy
+**Research areas:** Swarm robotics, heterogeneous multi-robot systems, digital pheromones, event-triggered communication, distributed autonomy
 
----
+This repository presents a ROS 2, PX4, and Gazebo research prototype for communication-efficient coordination between aerial and ground robots.
 
-## Overview
+Three UAVs act as scouts in a cluttered disaster/industrial environment. They patrol assigned sectors, identify mission-relevant targets, and selectively deposit digital pheromone information into a persistent spatial field. A Husky UGV follows this field, approaches candidate targets, performs close-range verification, and clears verified regions.
 
-This repository presents a public, non-confidential overview of an early-stage swarm robotics research project on communication-efficient coordination for heterogeneous UAV–UGV teams.
-
-The project investigates how aerial robots can support ground robot navigation through indirect digital environmental signalling instead of continuous state broadcasting.
-
-The work is currently implemented in simulation using ROS 2 Jazzy, PX4, and Gazebo.
+The robots coordinate through persistent spatial information rather than direct UAV-to-UGV motion commands.
 
 ---
 
-## Research Motivation
+## Research Question
 
-Large robot teams often depend on frequent communication between agents. This can become unreliable or expensive in communication-constrained, uncertain, or dynamic environments.
-
-This project explores an alternative approach inspired by stigmergy, where agents coordinate indirectly through traces left in the environment.
+Under what event-triggering conditions should heterogeneous robots create, update, and communicate persistent spatial information while preserving effective coordination under limited, intermittent, or degraded communication?
 
 ---
 
-## Core Research Idea
+## Coordination Pipeline
 
-Instead of continuous communication, UAVs communicate only when relevant events occur. The UGV does not receive direct commands from the UAVs. Instead, it follows information encoded in a shared guidance field.
+```text
+UAV patrol and perception
+        ↓
+Spatial target observation
+        ↓
+Event-trigger evaluation
+        ↓
+Digital pheromone deposit
+        ↓
+Persistent spatial field
+        ↓
+UGV field-following navigation
+        ↓
+Ground target verification
+        ↓
+Pheromone clearing or continued reinforcement
+```
 
-This approach aims to support:
+The digital pheromone field is interpreted as a form of distributed spatial memory.
 
-- reduced communication load
-- decentralized UAV–UGV coordination
-- scalable swarm behavior
-- robustness under agent failure
-- safety-aware multi-agent operation
+---
+
+## Current System
+
+The integrated simulation currently includes:
+
+- three PX4 x500 UAVs
+- one Husky UGV
+- ROS 2 Jazzy
+- PX4 SITL
+- Gazebo
+- disaster/industrial simulation world
+- sector-based UAV patrol
+- event-triggered pheromone deposition
+- pheromone diffusion and decay
+- pheromone age and staleness measurement
+- UGV field-following navigation
+- target detection
+- ground target verification
+- pheromone clearing after verification
+- CSV and JSONL experiment logging
+- scalability experiment scripts
+- simulated UAV-failure experiment scripts
+
+![UAV–UGV coordination](assets/gazebo_uav_ugv_coordination.png)
 
 ---
 
 ## System Architecture
 
-A high-level architecture diagram is available here:
-
-[System Architecture](docs/system_architecture.md)
-
----
-
-
-
-## Simulation Demo Video
-
-A short simulation demo video is available here:
-
-[UAV-UGV Coordination Demo](videos/uav_ugv_coordination_demo.mp4)
-
----
-
-## Simulation Screenshot
-
-The current Gazebo simulation setup includes three UAV agents and one Husky UGV.
-
-![Gazebo UAV-UGV setup](assets/gazebo_uav_ugv_setup.png)
-
----
-
-## Current Simulation Setup
-
-The current simulation study uses:
-
-- ROS 2 Jazzy
-- PX4
-- Gazebo
-- multiple UAV agents
-- one Clearpath Husky UGV
-- shared digital guidance layer
-- event-triggered updates
-- safety-aware coordination using control barrier function concepts
+```text
+UAV patrol and target observation
+              ↓
+Event-triggered deposit decision
+       ┌──────┴────────┐
+       │               │
+ Transmit deposit   Suppress update
+       │               │
+       ↓               ↓
+ /pheromone_deposit   Saving counter
+       │
+       ↓
+ Pheromone manager
+       ├── /pheromone_map
+       ├── /pheromone_staleness_map
+       └── field metrics
+       │
+       ↓
+ Husky field-following controller
+       │
+       ↓
+ Target verification
+       │
+       ↓
+ /pheromone_clear
+```
 
 ---
 
-## Preliminary Experimental Results
+## Main ROS 2 Interfaces
 
-The current simulation study includes four controlled experiments:
-
-| Experiment | Purpose |
+| Interface | Purpose |
 |---|---|
-| Communication reduction | Compare event-triggered communication against continuous broadcasting |
-| Task completion | Evaluate UGV guidance compared with unguided behavior |
-| Scalability | Test behavior with larger agent teams |
-| Robustness | Evaluate swarm behavior under UAV failure |
-
-Preliminary results suggest that event-triggered stigmergic coordination can substantially reduce communication compared with continuous broadcasting while still providing useful guidance for the ground robot.
-
-The full manuscript contains detailed quantitative results and is currently in preparation.
-A non-confidential preliminary results summary is available here:
-
-[Preliminary Simulation Results](results/preliminary_results.md)
-
+| `/pheromone_deposit` | Event-triggered spatial-information deposits |
+| `/pheromone_map` | Current pheromone concentration field |
+| `/pheromone_staleness_map` | Age and staleness of active field information |
+| `/pheromone_clear` | Clearing request after target verification |
+| `/husky_0/cmd_vel` | Husky UGV motion command |
 
 ---
 
-## Related UGV Platform Work
+## Verified Integrated Results
 
-In parallel, I am building an edge-device-based custom UGV platform for visual-inertial sensing and future autonomous navigation research.
+Three recent complete research-stack trials produced the following results:
 
-The current platform includes:
+| Run | Duration | Detected | Verified | Deposits | Suppressed updates | Saving |
+|---|---:|---:|---:|---:|---:|---:|
+| `run_20260625_200147` | 176 s | 3 | 2 | 1,639 | 23,801 | **93.56%** |
+| `run_20260625_200545` | 544 s | 3 | 2 | 4,356 | 76,536 | **94.62%** |
+| `run_20260625_201641` | 742 s | 3 | 2 | 5,445 | 105,501 | **95.09%** |
 
-- two CSI cameras
-- IMU connected through a USB serial bridge
-- ROS 2 Jazzy sensor integration
-- calibrated IMU publishing to /imu/data
-- dual-camera ROS topic publishing
-- synchronized ROS bag recording
-- health-check, logging, calibration, and startup scripts
+The saving percentage is calculated as:
 
-This hardware work supports the longer-term goal of moving from simulation-only UAV–UGV coordination toward real-world robot deployment.
+```text
+saving =
+suppressed candidate updates
+──────────────────────────────────────── × 100
+transmitted deposits + suppressed updates
+```
 
----
+This measures event-triggered message suppression. It does not yet represent measured network bytes, radio airtime, or energy consumption.
 
-## Planned Extensions
+The complete retained CSV summaries are available in:
 
-Planned next steps include:
-
-- improving theoretical analysis of the event-triggered coordination mechanism
-- comparing against additional decentralized coordination baselines
-- preparing a conference submission
-- creating simulation videos and visual result summaries
-- extending toward hardware-oriented validation
-- exploring semantic and dynamic SLAM for UGV navigation in changing environments
+```text
+results/integrated_runs/
+```
 
 ---
 
-## Repository Contents
+## Research Nodes
 
-assets/    Images, diagrams, screenshots, and architecture figures  
-docs/      Public research summaries and non-confidential documents  
-results/   Result tables, plots, and experiment summaries  
-videos/    Simulation videos or demo links  
+| Node | Function |
+|---|---|
+| `swarm_patrol_research.py` | UAV sector patrol |
+| `drone_depositor_research.py` | Observation processing and event-triggered deposition |
+| `pheromone_manager_research.py` | Field maintenance, decay, clearing, age, and staleness |
+| `husky_forager_research.py` | UGV pheromone-field following |
+| `target_verifier_research.py` | Ground target verification and field clearing |
+| `metrics_logger_research.py` | Mission and communication metric logging |
+| `scenario_utils.py` | Scenario configuration loading |
 
----
+Source files are located in:
 
-## Current Disclosure Status
-
-This repository is a public research overview. Full implementation details, source code, and the complete manuscript are currently private while the work is being prepared for academic submission.
-
-A public preprint or submitted manuscript link will be added when available.
-
----
-
-## Contact
-
-**Oluwagbotemi Elijah Ogundipe**  
-B.Eng. Mechatronics Engineering  
-Email: oluwagbotemi6ogundipe@gmail.com
+```text
+src/research_nodes/
+```
 
 ---
 
-## Running the Simulation
+## Repository Structure
 
-A high-level run guide is available here:
-
-[Running the UAV-UGV Swarm Simulation](docs/run_simulation.md)
+```text
+.
+├── assets/                  Simulation screenshots
+├── config/                  Disaster scenario configuration
+├── docs/                    Architecture and runtime documentation
+├── experiments/             Scalability and robustness experiments
+├── results/
+│   └── integrated_runs/     Retained time-series summaries
+├── src/
+│   └── research_nodes/      Current ROS 2 research nodes
+├── videos/                  Runtime demonstrations
+└── worlds/                  Gazebo disaster/industrial world
+```
 
 ---
 
-## Stigmergic Coordination Evidence
+## Experiments
 
-Runtime evidence for the pheromone-based coordination loop is available here:
+### Integrated Mission
 
-[Stigmergic Coordination and Pheromone Evidence](docs/stigmergic_coordination.md)
+The current integrated mission evaluates:
 
+- target detection
+- target verification
+- transmitted pheromone deposits
+- suppressed candidate updates
+- active pheromone cells
+- mean field staleness
+- maximum field staleness
+- field-clearing events
 
-## Final Runtime Demonstration
+### Scalability
 
-The latest simulation evidence includes a stable three-UAV and Husky UGV stigmergic coordination run:
+`experiments/experiment_3_scalability.py` supports tests with 3, 6, 9, and 12 agents.
 
-- [Three-UAV Husky stigmergy demo](videos/three_uav_husky_stigmergy_demo.mp4)
-- [Pheromone runtime evidence](videos/pheromone_runtime_evidence.mp4)
+A refreshed controlled dataset will be published before making a definitive 12-agent performance claim.
 
-The run demonstrates three airborne UAVs performing patrol motion, live pheromone deposition, a 10 Hz pheromone map, and Husky UGV foraging behavior driven by the pheromone field.
+### Robustness
 
+`experiments/experiment_4_robustness.py` evaluates coordination following simulated UAV failure.
+
+A refreshed controlled dataset will be published before making a definitive quantified failure-resilience claim.
+
+---
+
+## Current Limitations
+
+- The current field is maintained through a shared ROS 2 representation.
+- Independent robot-local pheromone fields are not yet implemented.
+- Verification currently uses simulation ground truth.
+- The saving metric counts suppressed updates rather than transmitted bytes.
+- Physical UAV–UGV validation has not yet been completed.
+- Controlled packet-loss and communication-delay experiments remain future work.
+
+---
+
+## Research Roadmap
+
+1. Independent robot-local spatial fields
+2. Selective field-delta exchange
+3. Delayed, duplicated, stale, and contradictory update handling
+4. Confidence-aware and uncertainty-aware trigger policies
+5. Packet-loss and intermittent-connectivity experiments
+6. Continuous and periodic communication baselines
+7. Refreshed scalability and UAV-failure datasets
+8. Stronger UGV obstacle-aware navigation
+9. Physical UAV–UGV validation
+10. Formal communication-performance analysis
+
+---
+
+## Runtime Evidence
+
+The repository contains:
+
+- Gazebo simulation screenshots
+- multi-UAV and Husky runtime videos
+- active pheromone-field demonstrations
+- retained experiment summaries
+- stable earlier proof tag: `v0.1-runtime-proof`
+
+---
+
+## Author
+
+**Oluwagbotemi Ogundipe**
+
+Research interests: swarm robotics, distributed autonomy, bio-inspired coordination, event-triggered control, and heterogeneous UAV–UGV systems.
+
+GitHub: https://github.com/Gbotemi11

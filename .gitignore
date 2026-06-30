@@ -1,0 +1,17 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+build/
+install/
+log/
+*.log
+*.bag
+*.db3
+rosbag2_*/
+research_results/
+.vscode/
+.idea/
+.DS_Store
+*~

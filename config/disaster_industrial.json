@@ -1,0 +1,190 @@
+{
+  "scenario_name": "disaster_industrial_persistent_monitoring",
+  "world_name": "default_with_disaster_scene",
+  "description": "Communication-efficient UAV-UGV persistent monitoring in a cluttered disaster/industrial site.",
+  "map": {
+    "origin_x": -20.0,
+    "origin_y": -20.0,
+    "size_x": 40.0,
+    "size_y": 40.0,
+    "resolution": 0.5,
+    "publish_hz": 10.0,
+    "evaporation_rate": 0.985,
+    "diffusion_rate": 0.04
+  },
+  "robots": {
+    "husky": {
+      "spawn_x": 0.0,
+      "spawn_y": 5.0,
+      "spawn_z": 0.2
+    },
+    "uavs": [
+      {
+        "id": 0,
+        "namespace": "",
+        "system_id": 1,
+        "spawn_x": 0.0,
+        "spawn_y": 0.0,
+        "altitude": -6.0,
+        "sector": "sector_A"
+      },
+      {
+        "id": 1,
+        "namespace": "/px4_1",
+        "system_id": 2,
+        "spawn_x": 2.0,
+        "spawn_y": 0.0,
+        "altitude": -7.0,
+        "sector": "sector_B"
+      },
+      {
+        "id": 2,
+        "namespace": "/px4_2",
+        "system_id": 3,
+        "spawn_x": 4.0,
+        "spawn_y": 0.0,
+        "altitude": -8.0,
+        "sector": "sector_C"
+      }
+    ]
+  },
+  "sectors": {
+    "sector_A": {
+      "name": "Collapsed warehouse sector",
+      "bounds": [
+        -20.0,
+        -5.0,
+        -20.0,
+        5.0
+      ],
+      "waypoints": [
+        [
+          -8.0,
+          2.0
+        ],
+        [
+          -7.0,
+          4.0
+        ],
+        [
+          -8.0,
+          8.0
+        ],
+        [
+          -4.0,
+          10.0
+        ]
+      ]
+    },
+    "sector_B": {
+      "name": "Pipeline and machinery sector",
+      "bounds": [
+        -5.0,
+        7.0,
+        -20.0,
+        8.0
+      ],
+      "waypoints": [
+        [
+          1.0,
+          2.0
+        ],
+        [
+          4.0,
+          4.0
+        ],
+        [
+          4.0,
+          8.0
+        ],
+        [
+          -2.0,
+          12.0
+        ]
+      ]
+    },
+    "sector_C": {
+      "name": "Container and rubble sector",
+      "bounds": [
+        7.0,
+        20.0,
+        -20.0,
+        8.0
+      ],
+      "waypoints": [
+        [
+          7.0,
+          2.0
+        ],
+        [
+          10.0,
+          4.0
+        ],
+        [
+          10.0,
+          8.0
+        ],
+        [
+          12.0,
+          10.0
+        ]
+      ]
+    }
+  },
+  "targets": [
+    {
+      "id": 1,
+      "name": "victim_A_rubble",
+      "type": "victim",
+      "x": -7.0,
+      "y": 4.0,
+      "priority": 1.0,
+      "detection_radius": 5.5,
+      "verification_radius": 1.5
+    },
+    {
+      "id": 2,
+      "name": "inspection_B_pipeline",
+      "type": "inspection",
+      "x": 4.0,
+      "y": 4.0,
+      "priority": 0.8,
+      "detection_radius": 5.5,
+      "verification_radius": 1.5
+    },
+    {
+      "id": 3,
+      "name": "victim_C_container",
+      "type": "victim",
+      "x": 10.0,
+      "y": 8.0,
+      "priority": 1.0,
+      "detection_radius": 5.5,
+      "verification_radius": 1.5
+    }
+  ],
+  "experiments": {
+    "event_triggered": {
+      "mode": "event",
+      "min_move_distance": 1.0,
+      "low_pheromone_threshold": 15.0,
+      "target_event_strength": 35.0,
+      "trail_strength": 8.0
+    },
+    "continuous_baseline": {
+      "mode": "continuous",
+      "deposit_period_sec": 0.2,
+      "target_event_strength": 35.0,
+      "trail_strength": 8.0
+    },
+    "failure_test": {
+      "failed_uav_id": 1,
+      "failure_time_sec": 90.0
+    }
+  },
+  "metrics": {
+    "log_period_sec": 1.0,
+    "staleness_threshold_sec": 10.0,
+    "target_timeout_sec": 240.0
+  }
+}
