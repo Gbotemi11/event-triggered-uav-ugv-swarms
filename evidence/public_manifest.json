@@ -1,0 +1,50 @@
+{
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "6ab90e4fc2b4a7eff2c4e73aacc7bec75a2d8607bf61b5fa0d724ab4529b4976",
+      "size_bytes": 221
+    },
+    {
+      "path": "CITATION.cff",
+      "sha256": "f2e1015ca5ddafc8ebd7fae25ae282a438ad3d1bd07442ea1e380550ca6fda9c",
+      "size_bytes": 366
+    },
+    {
+      "path": "NOTICE.md",
+      "sha256": "891f6506542f16387da6e9ab7411973e23a99ab3d38f847c8bd6b53adc333687",
+      "size_bytes": 308
+    },
+    {
+      "path": "README.md",
+      "sha256": "7dd8fa57220a3ec3c91afae7c96efeb84a68ee4c1a3658344208454ba69bbdec",
+      "size_bytes": 2316
+    },
+    {
+      "path": "assets/phase12_gui_demo_poster.jpg",
+      "sha256": "76604dd2d1a3251c5084710a3c75ab96c4227a5896dd8b8e856f98414c5c9358",
+      "size_bytes": 105281
+    },
+    {
+      "path": "evidence/README.md",
+      "sha256": "e80d4d7ad1c0f2efb6af2031a1d77a9900278d9ab44e873f15a5e068cdcb7cde",
+      "size_bytes": 332
+    },
+    {
+      "path": "evidence/phase12_gui_demonstration.json",
+      "sha256": "53c27ec09b807c3bfc8f3ae1dd0a309d9dcc56689d2d9019a893b8bb1db032df",
+      "size_bytes": 1718
+    },
+    {
+      "path": "evidence/phase12_gui_demonstration.md",
+      "sha256": "ecc6b9d5426ea600dce134082a82726098e73b1e77c9ac6370112d5c814d93ea",
+      "size_bytes": 1874
+    },
+    {
+      "path": "videos/phase12_event_triggered_uav_ugv_rviz_demo.mp4",
+      "sha256": "4025824715cd35b214fbe7c46dc6c9bfb0abc2fbf33b5826b712b322efc5268b",
+      "size_bytes": 10373954
+    }
+  ],
+  "schema": "swarm.public_manifest.v1"
+}

@@ -1,0 +1,14 @@
+
+# Source-free evidence repository: deny by default, then allow public artifacts.
+*
+!.gitignore
+!README.md
+!NOTICE.md
+!CITATION.cff
+!assets/
+!assets/*.jpg
+!evidence/
+!evidence/*.md
+!evidence/*.json
+!videos/
+!videos/*.mp4

@@ -1,0 +1,11 @@
+
+cff-version: 1.2.0
+message: "If you use this public evidence, please cite it using this metadata."
+title: "Event-Triggered UAV–UGV Swarm Evidence"
+type: software
+authors:
+  - family-names: Ogundipe
+    given-names: Oluwagbotemi
+version: 0.4-phase12
+date-released: 2026-07-15
+repository-code: "https://github.com/Gbotemi11/event-triggered-uav-ugv-swarms-evidence"

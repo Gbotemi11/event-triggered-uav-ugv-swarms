@@ -1,0 +1,58 @@
+{
+  "communication": {
+    "candidate_update_suppression_percentage": 63.166023166023166,
+    "metric_accounting_valid": true,
+    "policy_suppressed_updates": 1636,
+    "serialized_pheromone_payload_bytes": 26712,
+    "transmitted_deposits": 954
+  },
+  "comparative_eligible": false,
+  "evidence_type": "gui_mechanism_demonstration",
+  "gui_final_hold": {
+    "actual_sec": 296.028,
+    "completed": false,
+    "excluded_from_trial_duration_and_metrics": true,
+    "performed": true,
+    "requested_sec": 300.0,
+    "termination_reason": "presentation_process_exited"
+  },
+  "interpretation": {
+    "does_not_establish": "comparative communication-performance equivalence or superiority",
+    "supports": "integrated mechanism execution and evidence lifecycle integrity"
+  },
+  "mission": {
+    "duration_sec": 124.074,
+    "mission_completion_time_sec": 122.43,
+    "verified_count": 3,
+    "verified_targets": [
+      1,
+      2,
+      3
+    ]
+  },
+  "process_cleanup": {
+    "clean": true,
+    "forced_kills": 0,
+    "orphan_processes": []
+  },
+  "run": {
+    "commit": "3f526b5cc335ec5f23723ce287fdad1d89c12c8d",
+    "communication_mode": "event_triggered",
+    "run_id": "run_20260715_175852_847453_event_triggered",
+    "status": "completed",
+    "termination_reason": "all_targets_verified",
+    "trial_valid": true,
+    "working_tree_clean": true
+  },
+  "schema": "swarm.public_evidence.v1",
+  "video": {
+    "codec": "h264",
+    "duration_sec": 66.8431,
+    "frame_rate": "30000/1001",
+    "height": 1080,
+    "path": "videos/phase12_event_triggered_uav_ugv_rviz_demo.mp4",
+    "sha256": "4025824715cd35b214fbe7c46dc6c9bfb0abc2fbf33b5826b712b322efc5268b",
+    "size_bytes": 10373954,
+    "width": 1920
+  }
+}
