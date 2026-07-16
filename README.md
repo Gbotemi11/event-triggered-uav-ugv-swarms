@@ -1,6 +1,15 @@
 
 # Event-Triggered UAV–UGV Swarm Evidence
 
+<!-- PHASE12_GIF_START -->
+
+[![Event-triggered UAV–UGV stigmergic coordination demonstration](assets/phase12_event_triggered_uav_ugv_preview.gif)](https://github.com/Gbotemi11/event-triggered-uav-ugv-swarms/releases/download/v0.4-phase12-evidence/phase12_event_triggered_uav_ugv_rviz_demo.mp4)
+
+*Three PX4 UAVs generate an event-triggered digital pheromone field while a Husky UGV follows the field to verify targets. Click the preview for the full 1080p evidence video.*
+
+<!-- PHASE12_GIF_END -->
+
+
 Public evidence for research on communication-efficient persistent monitoring
 with heterogeneous UAV–UGV teams.
 
